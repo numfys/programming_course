@@ -4,12 +4,16 @@
 \usepackage{url}
 \usepackage{graphicx}
 \usepackage{tikz}
+\usepackage{caption}
+\usepackage{subcaption}
 
 \usetheme{Berlin}
 \usecolortheme{beaver}
 
 \title{Kurs i NumPy med NumFys}
-\author{Thorvald Ballestad}
+\author{Thorvald Ballestad og Jenny Lunde}
+\date{2. mars 2021}
+\logo{\url{thorvald.tb@gmail.com}\includegraphics[width=0.75cm]{numfys.png}}
 
 \lstset{
   frame=single,
@@ -56,10 +60,6 @@ my_python_list*2  // [1,2,4] -> [1,2,4,1,2,4]
   \end{lstlisting}
 \end{frame}
 
-\begin{frame}
-  \begin{block}{Oppgave 1 -- The basics}\end{block}
-\end{frame}
-
 \begin{frame}[fragile]
   Plotting:
   Vi plotter ved å gi \lstinline{matplotlib} to lister, en med $x$-verdier og en med $y$-verdier.
@@ -79,9 +79,8 @@ plt.show()
   \centering
   \includegraphics[width=0.75\textwidth]{simple_plot}
 \end{frame}
-
 \begin{frame}
-  \begin{block}{Oppgave 2 -- Plotting}\end{block}
+  \begin{block}{Oppgave 1 -- The basics}\end{block}
 \end{frame}
 
 
@@ -107,11 +106,13 @@ data = np.array([[1,2,3],
 data[0]    # First row
 data[0,:]  # Also first row
 data[:,0]  # First column
+###
+python_list[start:stop]
   \end{lstlisting}
 \end{frame}
 
 \begin{frame}
-  \begin{block}{Oppgave 3 -- Matriser}\end{block}
+  \begin{block}{Oppgave 2 -- Matriser}\end{block}
 \end{frame}
 
 %% Meshgrid %%
@@ -134,21 +135,61 @@ xx,yy = np.meshgrid(x,y);
   \end{minipage}
 \end{frame}
 \begin{frame}
+  \begin{center}
+    \includegraphics[width=0.75\textwidth]{heatmap}
+  \end{center}
+\end{frame}
+\begin{frame}
   \frametitle{Meshgrid}
   \centering
-    \begin{tikzpicture}
+    \begin{tikzpicture}[scale=0.8, every node/.style={scale=0.6}]
 %    \draw (0,0) grid (4.9,4.9);
-    \draw[->] (-0.5,-0.5) -- (5,-0.5) node[right] {$x$};
-    \draw[->] (-0.5,-0.5) -- (-0.5,5) node[above] {$y$};
+    \draw[->] (-0.5,-0.5) -- (6,-0.5) node[right] {$x$};
+    \draw[->] (-0.5,-0.5) -- (-0.5,6) node[above] {$y$};
+
 
     \foreach \x in {0,...,5}
     \foreach \y in {0,...,5}
     \node at (\x,\y) {\footnotesize(\x,\y)};
+
+
+    \foreach \x in {0,...,5}
+    \node at (\x, -1) {\footnotesize\x\phantom{,0}};
+
+    \foreach \y in {0,...,5}
+    \node at (-1, \y) {\footnotesize\y};
   \end{tikzpicture}
 \end{frame}
 
 \begin{frame}
-  \begin{block}{Oppgave 4 -- Stepping it up}\end{block}
+  \frametitle{Meshgrid}
+  \centering
+    \begin{tikzpicture}[scale=0.45, every node/.style={scale=0.6}]
+%    \draw (0,0) grid (4.9,4.9);
+    \draw[->] (-0.5,-0.5) -- (5.4,-0.5) node[right] {$x$} node[midway, below, yshift=-10pt]{xx};
+    \draw[->] (-0.5,-0.5) -- (-0.5,5.4) node[above] {$y$};
+
+
+
+    \foreach \x in {0,...,5}
+    \foreach \y in {0,...,5}
+    \node at (\x,\y) {\footnotesize\x};
+    \end{tikzpicture}
+    \qquad
+    \begin{tikzpicture}[scale=0.45, every node/.style={scale=0.6}]
+%    \draw (0,0) grid (4.9,4.9);
+    \draw[->] (-0.5,-0.5) -- (5.4,-0.5) node[right] {$x$} node[midway, below, yshift=-10pt]{yy};
+    \draw[->] (-0.5,-0.5) -- (-0.5,5.4) node[above] {$y$};
+
+
+    \foreach \x in {0,...,5}
+    \foreach \y in {0,...,5}
+    \node at (\x,\y) {\footnotesize\y};
+  \end{tikzpicture}
+\end{frame}
+
+\begin{frame}
+  \begin{block}{Oppgave 3 -- Stepping it up}\end{block}
 \end{frame}
 
 %% Plotting i 2D %%
@@ -187,6 +228,17 @@ xx,yy = np.meshgrid(x,y);
   \end{minipage}
 \end{frame}
 
+\begin{frame}
+  \begin{figure}
+    \begin{subfigure}[b]{0.49\textwidth}
+      \includegraphics[width=\textwidth]{mode_4.pdf}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+      \includegraphics[width=\textwidth]{wireframe_stylish.png}
+    \end{subfigure}
+  \end{figure}
+\end{frame}
+
 \begin{frame}[fragile]
   \frametitle{pcolormesh}
   Heatmap som indikerer verdien til en tovariabel skalar funksjon.
@@ -214,7 +266,7 @@ plt.quiver(xx,yy, xx, yy)
 \end{frame}
 
 \begin{frame}
-  \begin{block}{Oppgave 5 -- Plotting i 2D}\end{block}
+  \begin{block}{Oppgave 4 -- Plotting i 2D}\end{block}
 \end{frame}
 
 %% Lese fra fil %%

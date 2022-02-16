@@ -1,0 +1,19 @@
+\documentclass[tikz]{standalone}
+\usepackage{tikz}
+
+\begin{document}
+\begin{tikzpicture}
+  \coordinate (lower-left) at (0,0);
+  \coordinate (upper-left) at (0,5);
+  \coordinate (upper-right) at (5,5);
+  \coordinate (lower-right) at (5,0);
+
+  \draw (lower-left) -- (upper-left) node[midway, left] {$V_0$}
+  -- (upper-right) node[midway, above] {$V(x, 0)$}
+  -- (lower-right) node[midway, right] {$0$}
+  -- (lower-left);
+
+  \draw[|-|] (lower-left)++(0,-0.4) -- ++(5,0)
+  node[midway, below] {$L$};
+\end{tikzpicture}
+\end{document}
